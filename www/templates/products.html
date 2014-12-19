@@ -1,10 +1,15 @@
 <ion-view view-title="Products">
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="product in products" href="#/app/products/{{product.objectid}}">
-        <img src="{{product.Image}}">
-        {{product.Name}}
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <div class="list">
+                <div class="spinner" ng-show="loading"><i class="icon ion-loop"></i></div>
+                <a class="item item-thumbnail-left" ng-repeat="product in products" href="#/app/products/{{product.objectid}}">
+                    <img src="{{product.Image}}">
+                    <h2>{{product.Name}}</h2>
+                    <p>{{product.Description}}</p>
+                </a>
+
+            </div>
+        </ion-list>
+    </ion-content>
 </ion-view>

@@ -40,10 +40,13 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 .controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
+    $scope.loading = true;
     listProductFactory.query(function(data) {
         $scope.products = data.results;
+        $scope.loading = false;
     });
 }])
+
 
 .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',

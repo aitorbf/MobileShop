@@ -51,9 +51,9 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 .controller('ProductCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
-   listProductFactory.query(function(data) {
-    $scope.products = data.results;
-  });
+    listProductFactory.query(function(data) {
+        $scope.products = data.results;
+    });
 }])
 
 .constant('AUTH_EVENTS', {
@@ -63,4 +63,9 @@ angular.module('starter.controllers', ['starter.services'])
     sessionTimeout: 'auth-session-timeout',
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
+})
+
+.constant('USER_ROLES', {
+    admin: 'admin',
+    user: 'user'
 });

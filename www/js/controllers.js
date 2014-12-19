@@ -48,12 +48,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ProductCtrl','getProductFactory' ,function($scope, $stateParams,getProductFactory) {
-    $id = $stateParams.id;
-     getProductFactory.query({ id:$id },function(data) {
-        $scope.product = data.results;
+.controller('ProductCtrl',['$scope','$stateParams','getProductFactory' ,function($scope, $stateParams,getProductFactory) {
+     getProductFactory.query({ id:$stateParams.id },function(data) {
+        $scope.product = data;
     });
-})
+}])
 
 .controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
     $scope.loading = true;

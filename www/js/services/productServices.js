@@ -17,7 +17,7 @@ productServices.factory('listProductFactory', function($resource,PARSE_CREDENTIA
  )});
 
 productServices.factory('getProductFactory', function($resource,PARSE_CREDENTIALS) {
-    return $resource('https://api.parse.com/1/classes/Product:id', null,
+    return $resource('https://api.parse.com/1/classes/Product/:id', null,
                      { 
         'query':  {
             method:'GET', 

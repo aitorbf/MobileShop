@@ -1,6 +1,18 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
+.controller('ApplicationController', function ($scope,
+                                                USER_ROLES,
+                                                AuthService) {
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = AuthService.isAuthorized;
+
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+    };
+})
+
+.controller('LoginController', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
     // Form data for the login modal
     $scope.credentials = {
         username: '',
@@ -47,7 +59,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
 
 
 .controller('ProductCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){

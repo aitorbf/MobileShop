@@ -48,3 +48,11 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
+
+.controller('ProductCtrl',['$scope','listProductFactory', ProductCtrl]);
+
+function ProductCtrl($scope,listProductFactory){
+   listProductFactory.query(function(data) {
+    $scope.products = data.results;
+  });
+}

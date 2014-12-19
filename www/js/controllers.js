@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['starter.services'])
     };*/
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('ProductCtrl', function($scope, $stateParams) {
 })
 
 

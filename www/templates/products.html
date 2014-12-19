@@ -2,6 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="product in products" href="#/app/products/{{product.objectid}}">
+        <img src="{{product.Image}}">
         {{product.Name}}
       </ion-item>
     </ion-list>

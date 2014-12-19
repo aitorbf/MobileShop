@@ -18,6 +18,6 @@ productServices.factory('listProductFactory', function($resource,PARSE_CREDENTIA
 
 
 productServices.value('PARSE_CREDENTIALS',{
-    APP_ID: 'IOzyklVXHyXdDRTIptfWhbgiwJgkLCyw7CJlAFzf',
-    REST_API_KEY:'HOAtISRRXm2yBFz6gykMw9qAvC33RdUt4CXMiuAP'
+    APP_ID: 'ozXaOn5rtoWO5luXNvJ96XfjvdbWJEyXCiNBDkzF',
+    REST_API_KEY:'l8aP4kfOskkDrgw8SYMDcryaq8fS7Bwp4M2mWt5U'
 });

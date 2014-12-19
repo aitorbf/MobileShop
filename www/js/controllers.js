@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
     // Form data for the login modal
@@ -49,10 +49,18 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
 
-.controller('ProductCtrl',['$scope','listProductFactory', ProductCtrl]);
 
-function ProductCtrl($scope,listProductFactory){
+.controller('ProductCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
    listProductFactory.query(function(data) {
     $scope.products = data.results;
   });
-}
+}])
+
+.constant('AUTH_EVENTS', {
+    loginSuccess: 'auth-login-success',
+    loginFailed: 'auth-login-failed',
+    logoutSuccess: 'auth-logout-success',
+    sessionTimeout: 'auth-session-timeout',
+    notAuthenticated: 'auth-not-authenticated',
+    notAuthorized: 'auth-not-authorized'
+});

@@ -1,6 +1,19 @@
-angular.module('starter.controllers', ['starter.services'])
+angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $rootScope, AUTH_EVENTS) {
+.controller('ApplicationController', function ($scope,
+                                                USER_ROLES,
+                                                AuthService) {
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = AuthService.isAuthorized;
+
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+    };
+})
+
+.controller('LoginController', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
+
     // Form data for the login modal
     $scope.credentials = {
         username: '',
@@ -14,7 +27,7 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.modal = modal;
     });
 
-    /*// Triggered in the login modal to close it
+    // Triggered in the login modal to close it
     $scope.closeLogin = function() {
         $scope.modal.hide();
     };
@@ -32,12 +45,11 @@ angular.module('starter.controllers', ['starter.services'])
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
-    };*/
+    };
 })
 
 .controller('ProductCtrl', function($scope, $stateParams) {
 })
-
 
 .controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
     $scope.loading = true;

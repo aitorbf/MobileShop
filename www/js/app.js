@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ap
     })
 
   .state('app.single', {
-    url: "/products/:productId",
+    url: "/products/:objectId",
     views: {
       'menuContent': {
         templateUrl: "templates/product.html",

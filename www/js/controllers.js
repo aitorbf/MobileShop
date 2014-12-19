@@ -48,7 +48,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ProductCtrl', function($scope, $stateParams) {
+.controller('ProductCtrl','getProductFactory' ,function($scope, $stateParams,getProductFactory) {
+    $id = $stateParams.id;
+     getProductFactory.query({ id:$id },function(data) {
+        $scope.product = data.results;
+    });
 })
 
 .controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){

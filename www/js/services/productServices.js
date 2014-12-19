@@ -4,17 +4,17 @@ productServices.factory('listProductFactory', function($resource,PARSE_CREDENTIA
     return $resource('https://api.parse.com/1/classes/Product', null,
                      { 
         'query':  {
-                    method:'GET', 
-                    isArray:true,
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    }
-                  
-                  }
-    };
+            method:'GET', 
+            isArray:false,
+            headers:{
+                'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
+            }
 
-     });
+        }
+    }
+
+                    )});
 
 
 productServices.value('PARSE_CREDENTIALS',{

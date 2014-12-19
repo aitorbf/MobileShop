@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
+.controller('AppCtrl', function($scope, $ionicModal, $rootScope, AUTH_EVENTS) {
     // Form data for the login modal
     $scope.credentials = {
         username: '',
@@ -14,7 +14,7 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.modal = modal;
     });
 
-    // Triggered in the login modal to close it
+    /*// Triggered in the login modal to close it
     $scope.closeLogin = function() {
         $scope.modal.hide();
     };
@@ -32,25 +32,14 @@ angular.module('starter.controllers', ['starter.services'])
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
-    };
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-    $scope.playlists = [
-        { title: 'Reggae', id: 1 },
-        { title: 'Chill', id: 2 },
-        { title: 'Dubstep', id: 3 },
-        { title: 'Indie', id: 4 },
-        { title: 'Rap', id: 5 },
-        { title: 'Cowbell', id: 6 }
-    ];
+    };*/
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
 
 
-.controller('ProductCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
+.controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
     listProductFactory.query(function(data) {
         $scope.products = data.results;
     });

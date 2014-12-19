@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('AuthService', function ($http, Session) {
+/*.factory('AuthService', function ($http, Session) {
     var authService = {};
 
     authService.login = function (credentials) {
@@ -26,4 +26,4 @@ angular.module('starter.services', [])
     };
 
     return authService;
-});
+});*/

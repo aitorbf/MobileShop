@@ -39,8 +39,6 @@ angular.module('starter.services', [])
     };
 
     return authService;
-});
-
 })
 
 .service('Session', function () {

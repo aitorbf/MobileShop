@@ -6,10 +6,11 @@ angular.module('starter.services', [])
 
     authService.login = function (credentials) {
 
-        var User = $resource('https://api.parse.com/1/login', {username:'credentials.username', password:'credentials.password'},
+        return $resource('https://api.parse.com/1/login', {username:credentials.username, password:credentials.password},
                              { 
             'get':  {
-                method:'GET', 
+                method:'GET',
+                isArray:false,
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -18,11 +19,6 @@ angular.module('starter.services', [])
             }
         });
 
-        User.get({username:'credentials.username', password:'credentials.password'}).$promise.then(function (res) {
-            Session.create(res.sessionToken, res.objectId,
-                           res.username, res.username);
-            return res;
-        });
     };
 
 

@@ -1,8 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ApplicationController', function ($scope,
-                                                USER_ROLES,
-                                                AuthService) {
+.controller('ApplicationController', function ($scope, $ionicModal, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -10,9 +8,6 @@ angular.module('starter.controllers', [])
     $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
     };
-})
-
-.controller('LoginController', function($scope, $ionicModal, $rootScope, AUTH_EVENTS, AuthService) {
 
     // Form data for the login modal
     $scope.credentials = {
@@ -39,17 +34,23 @@ angular.module('starter.controllers', [])
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function (credentials) {
-        AuthService.login(credentials).then(function (user) {
+        AuthService.login(credentials).get({username:credentials.username, password:credentials.password}).$promise.then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+            Session.create(user.sessionToken, user.objectId,
+                           user.username, user.username);
             $scope.setCurrentUser(user);
+            $scope.closeLogin();
+            alert('You are logged in as ' +  $scope.currentUser.username);
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+            alert('Invalid username or password');
         });
+                                           
     };
 })
 
 .controller('ProductCtrl',['$scope','$stateParams','getProductFactory' ,function($scope, $stateParams,getProductFactory) {
-     getProductFactory.query({ id:$stateParams.id },function(data) {
+    getProductFactory.query({ id:$stateParams.id },function(data) {
         $scope.product = data;
     });
 }])

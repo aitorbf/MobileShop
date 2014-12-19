@@ -48,16 +48,6 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ap
         controller: 'ProductCtrl'
       }
     }
-  })
-  
-  .state('app.login', {
-    url: "/login",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/login.html",
-        controller: 'LoginController'
-      }
-    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/products');

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ApplicationController', function ($scope, $ionicModal, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session) {
+.controller('ApplicationController', function ($scope, $ionicModal,$ionicPopup, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -40,12 +40,20 @@ angular.module('starter.controllers', [])
                            user.username, user.username);
             $scope.setCurrentUser(user);
             $scope.closeLogin();
-            alert('You are logged in as ' +  $scope.currentUser.username);
+            var alertPopup = $ionicPopup.alert({
+                title: 'Welcome',
+                template: 'You are logged in as ' +  $scope.currentUser.username
+            });
+
+
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-            alert('Invalid username or password');
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login',
+                template: 'Invalid username or password' 
+            });
         });
-                                           
+
     };
 })
 

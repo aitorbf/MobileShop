@@ -1,13 +1,25 @@
-<ion-view title="Product">
-    <ion-content class="has-header">
-        <div class="list card">
-            <div class="item">
-                <h3>{{product.Name}}</h3>
-                <p>{{product.price}}</p>
+<ion-view>
+    <ion-content>
+        <div class="card">
+            <div class="item item-divider">
+                {{product.Name}}
             </div>
-            <div class="item item-body">
+            <div class="item item-text-wrap">
+                <p>Price: {{product.Price}}</p>
                 <p>{{product.Description}}</p>
             </div>
+
+            <a href="#" class="item item-icon-left assertive">
+                <i class="icon ion-plus "></i>
+                Add to cart
+            </a>
+
+
+            <div class="item item-image">
+                <img src="{{product.Image}}">
+            </div>
+
+
         </div>
     </ion-content>
 </ion-view>

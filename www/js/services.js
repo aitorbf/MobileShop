@@ -6,7 +6,8 @@ angular.module('starter.services', [])
 
     authService.login = function (credentials) {
 
-        return $resource('https://api.parse.com/1/login', {username:credentials.username, password:credentials.password},
+        return $resource('https://api.parse.com/1/login', 
+            {username:credentials.username, password:credentials.password},
                              { 
             'get':  {
                 method:'GET',

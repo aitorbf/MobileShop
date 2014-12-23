@@ -29,6 +29,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ap
     templateUrl: "templates/menu.html",
     controller: 'ApplicationController'
   })
+   .state('app.profile', {
+      url: "/profile",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/profile.html",
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
+
 
     .state('app.products', {
       url: "/products",

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ApplicationController', function ($scope, $ionicModal,$ionicPopup, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session) {
+.controller('ApplicationController', function ($scope, $ionicModal,$ionicPopup,$ionicLoading,$rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -34,25 +34,32 @@ angular.module('starter.controllers', [])
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function (credentials) {
-        AuthService.login(credentials).get({username:credentials.username, password:credentials.password}).$promise.then(function (user) {
-            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            Session.create(user.sessionToken, user.objectId,
-                           user.username, user.username);
-            $scope.setCurrentUser(user);
-            $scope.closeLogin();
-            var alertPopup = $ionicPopup.alert({
-                title: 'Welcome',
-                template: 'You are logged in as ' +  $scope.currentUser.username
-            });
+        AuthService.login(credentials)
+        .get(
+            {
+                username:credentials.username,
+                password:credentials.password
+            }
+        )
+        .$promise.then(
 
-
-        }, function () {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login',
-                template: 'Invalid username or password' 
+            function (user) {
+                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                Session.create(user.sessionToken, user.objectId,
+                               user.username, user.username);
+                $scope.setCurrentUser(user);
+                $scope.closeLogin();
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Welcome',
+                    template: 'You are logged in as ' +  $scope.currentUser.username
+                });
+            }, function () {
+                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login',
+                    template: 'Invalid username or password' 
+                });
             });
-        });
 
     };
 })
@@ -63,14 +70,18 @@ angular.module('starter.controllers', [])
     });
 }])
 
-.controller('ProductsCtrl',['$scope','listProductFactory', function ($scope,listProductFactory){
-    $scope.loading = true;
+.controller('ProductsCtrl',['$scope','listProductFactory','$ionicLoading', function ($scope,listProductFactory,$ionicLoading){
+    showLoadingDialog($ionicLoading);
     listProductFactory.query(function(data) {
         $scope.products = data.results;
-        $scope.loading = false;
+        hideLoadingDialog($ionicLoading);
     });
 }])
 
+.controller('ProfileCtrl',['$scope', 'Session',function ($scope,Session){
+    
+  
+}])
 
 .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',
@@ -85,3 +96,17 @@ angular.module('starter.controllers', [])
     admin: 'admin',
     user: 'user'
 });
+
+
+function showLoadingDialog($ionicLoading){
+    $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0
+    });
+}
+function hideLoadingDialog($ionicLoading){
+    $ionicLoading.hide();
+}
